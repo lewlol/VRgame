@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e49de29f6e27ed4aadbaf7cac32792f, type: 3}
+  m_Name: Double Barrel Shotgun
+  m_EditorClassIdentifier: 
+  weaponName: Double Barrel Shotgun
+  weaponRarity: Rare
+  damage: 4
+  attackSpeed: 1.5
+  reloadSpeed: 1.5
+  isAuto: 0
+  isHitscan: 1
+  bulletSpeed: 30
+  maxBullets: 1
+  bulletRange: 0.5
+  bulletPrefab: {fileID: 199372865087347486, guid: 529e33dc824944d4f96a2de838c3f8f8,
+    type: 3}
