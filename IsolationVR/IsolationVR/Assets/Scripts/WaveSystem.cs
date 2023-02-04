@@ -8,53 +8,45 @@ public class WaveSystem : MonoBehaviour
     public int wave;
     public int zombieCount;
 
-    int maxZombieCount = 24;
+    int maxZombieCount = 12;
 
     public GameObject[] spawnPoints;
 
     float currentZombies;
+    float timeTillNextZombie;
+    int enemyDiff;
+    int totalKills;
     private void Start()
     {
-        StartCoroutine(MidRound(10));
+        enemyDiff = 1;
+        maxZombieCount = 12;
+        timeTillNextZombie = Random.Range(5, 24);
     }
-    public void GenerateWave()
+    private void Update()
     {
-        //Determine Zombie Count
-        zombieCount = 5 + wave;
-        if(zombieCount > maxZombieCount)
+        float countDown = timeTillNextZombie -= Time.deltaTime; 
+        if(countDown <= 0)
         {
-            zombieCount = maxZombieCount;
-        }
-
-        //Spawn a Zombie at a random Location
-        for(int x = 0; x < zombieCount; x++)
-        {
-            StartCoroutine(SpawningZombie());
+            SpawnZombie();
         }
     }
-
-    //Zombie Dies and Check for Next Round
+    public void SpawnZombie()
+    {
+        if(currentZombies < maxZombieCount)
+        {
+            int zombiesToSpawn = Random.Range(1, 5);
+            for(int i = 0; i < zombiesToSpawn; i++)
+            {
+                StartCoroutine(SpawningZombie());
+            }
+        }
+        timeTillNextZombie = Random.Range(5, 24);
+    }
     public void ZombieDied()
     {
         currentZombies--;
-        if (currentZombies <= 0)
-        {
-            StartCoroutine(MidRound(15));
-        }
+        totalKills++;
     }
-
-    //Mid Round Waiting 
-    IEnumerator MidRound(float time)
-    {
-        //Reset Zombie Count
-        currentZombies = 0;
-        yield return new WaitForSeconds(time);
-
-        //Generate New Wave
-        wave++;
-        GenerateWave();
-    }
-
     //Spawning Zombies with an offset so that they all done look exactly the same when walking
     IEnumerator SpawningZombie()
     {
