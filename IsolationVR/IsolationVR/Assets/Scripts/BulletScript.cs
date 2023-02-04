@@ -4,7 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
     public float damage;
     public GameObject breakParticles;
